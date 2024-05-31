@@ -15,6 +15,7 @@ public class MainPage {
         driver = AndroidInitDriver.setUp();
         actions = new MobileActions();
     }
+
     public void clickOnThirdBonus(){
         actions.click(driver.findElement(By.xpath("(//*[text()='Get Bonus'])[3]")));
     }
