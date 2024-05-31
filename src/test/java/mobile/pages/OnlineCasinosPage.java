@@ -20,4 +20,7 @@ public class OnlineCasinosPage {
     public void clickPlayNowButton(){
         actions.click(driver.findElement(By.xpath("//button//span[text()='Play Now']")));
     }
+    public String getTextFromTopTile(){
+        return actions.getTextByXPath("//div[@class='bonusWelcomeTypeWidget__card__top__title']");
+    }
 }

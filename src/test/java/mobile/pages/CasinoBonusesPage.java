@@ -37,6 +37,4 @@ public class CasinoBonusesPage {
         WebElement element =wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //p[@class='offer_main__bonus']")));
         return element.getText();
     }
-
-
 }

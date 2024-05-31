@@ -144,7 +144,7 @@ public class MobileBonusesTests {
      @Test
     public void checkBonusIsCorrectOnOnlineCasinosPageForFastPayout() {
         actions.open(UrlService.PREPROD_URL_ONLINE_CASINOS_FAST_PAYOUT);
-        String bonusText = actions.getTextOfBonusOnMainPage();
+        String bonusText = onlineCasinosPage.getTextFromTopTile();
         onlineCasinosPage.clickVisitCasinoButton();
         actions.switchToNewTab();
         String firstBonusTextAfterClicking = actions.getTextOfBonusFromRedirectedPage();
