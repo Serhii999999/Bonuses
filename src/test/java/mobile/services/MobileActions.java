@@ -41,36 +41,7 @@ public class MobileActions {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);
     }
-    public  void navigateBack(){
-        driver.navigate().back();
-    }
 
-    public  boolean areApproximatelyEqual(int val1, int val2, int threshold){
-        int difference = Math.abs(val1-val2);
-        return difference <= threshold;
-    }
-    public  int retrieveNumberFromPage(String p, String url) {
-        WebElement preElement = new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.tagName("pre")));
-        String preText = preElement.getText();
-
-        String pattern = "\"Site Crawled\",\"" + url + "/\".*?" + p;
-        Pattern patternMatch = Pattern.compile(pattern, Pattern.DOTALL);
-        Matcher matcher = patternMatch.matcher(preText);
-
-        if (matcher.find()) {
-            return Integer.parseInt(matcher.group(1));
-        } else {
-            throw new RuntimeException("Pattern not found in the page content");
-        }
-    }
-    public void printMessageIfValueIsMoreThenExpected(int actual, int expected, String message, String url){
-        if(actual>expected){
-            System.out.println(message + url);
-            System.out.println(" Expected value: "+ expected + ", actual value: "+ actual);
-            System.out.println("-----------------------");
-        }
-    }
     public String getTextByXPath(String xpath) {
         WebElement element = driver.findElement(By.xpath(xpath));
         if(element.isDisplayed() && element.isEnabled())
