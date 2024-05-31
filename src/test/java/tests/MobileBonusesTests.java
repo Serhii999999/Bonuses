@@ -32,7 +32,7 @@ public class MobileBonusesTests {
         mainPage = new MainPage();
     }
     @Test
-    public void checkThreeBonusesAreCorrectOnMainPage() throws InterruptedException {
+    public void checkThreeBonusesAreCorrectOnMainPage() {
         actions.open(UrlService.PREPROD_URL_CASINO);
         String firstBonusText = actions.getTextOfBonusOnMainPage();
         actions.clickOnFirstBonus();
@@ -49,6 +49,7 @@ public class MobileBonusesTests {
         actions.clickOnSecondBonus();
         mainPage.clickOnThirdBonus();
         //not finished
+        //second bonus can't be opened, and third is with a picture
     }
     @Test
     public void checkBonusesAreCorrectOnFreeSpinsNoDepositPage() {
@@ -140,7 +141,7 @@ public class MobileBonusesTests {
         actions.switchToNewTab();
         Assert.assertNotEquals(UrlService.PREPROD_URL_FREE_SLOTS_ONLINE_STARBURST,actions.getCurrentUrl());
     }
-    // @Test
+     @Test
     public void checkBonusIsCorrectOnOnlineCasinosPageForFastPayout() {
         actions.open(UrlService.PREPROD_URL_ONLINE_CASINOS_FAST_PAYOUT);
         String bonusText = actions.getTextOfBonusOnMainPage();
@@ -151,8 +152,16 @@ public class MobileBonusesTests {
         actions.printTextIfValuesAreNotEqual(UrlService.PREPROD_URL_ONLINE_CASINOS_FAST_PAYOUT, actions.getCurrentUrl(),bonusText,
                 firstBonusTextAfterClicking,checkForFirstCase);
         Assert.assertTrue(checkForFirstCase);
-        //not correct due to the absence of usa vpn
-    }
+        actions.closeCurrentWindow();
+        actions.switchToPreviousTab();
+         String bonusTextSecondCase = actions.getTextOfBonusOnMainPage();
+         onlineCasinosPage.clickPlayNowButton();
+         actions.switchToNewTab();
+         String BonusTextAfterClickingSecondCase = actions.getTextOfBonusFromRedirectedPage();
+         boolean checkForSecondCase = actions.checkBonusMainValuesAreEqual(bonusTextSecondCase,BonusTextAfterClickingSecondCase);
+         Assert.assertTrue(checkForSecondCase);
+
+     }
     @Test
     public void testClickOnLinkOpensAnotherUrl() throws InterruptedException {
         actions.open(UrlService.PROD_URL_CASINO);

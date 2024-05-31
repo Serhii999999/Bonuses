@@ -18,6 +18,6 @@ public class OnlineCasinosPage {
         actions.click(driver.findElement(By.xpath("//button[@class='bonusWelcomeTypeWidget__card__btn']")));
     }
     public void clickPlayNowButton(){
-        actions.click(driver.findElement(By.xpath("//*[@id='playNowButton']")));
+        actions.click(driver.findElement(By.xpath("//button//span[text()='Play Now']")));
     }
 }
